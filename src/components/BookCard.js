@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, Image } from "semantic-ui-react";
+import { CartContext } from "../App";
 
 export default function BookCard({ data }) {
+  const { addToCart } = useContext(CartContext);
   return (
     <Card>
       <Image src={data.image} wrapped ui={false} style={{ width: 120 }} />
@@ -13,7 +15,9 @@ export default function BookCard({ data }) {
         <Card.Description></Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <button>+ ajouter au caddie</button>
+        <button onClick={() => addToCart({ id: data.id, quantity: 1 })}>
+          + ajouter au caddie
+        </button>
       </Card.Content>
     </Card>
   );

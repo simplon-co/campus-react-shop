@@ -23,7 +23,7 @@ export default function BookList() {
           <Grid columns={3} doubling stackable>
             {books.map(b => (
               <Grid.Column key={b.id}>
-                <Segment>
+                <Segment style={{ height: "26em" }}>
                   <Book data={b} />
                 </Segment>
               </Grid.Column>
