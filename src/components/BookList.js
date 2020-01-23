@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Grid, Segment } from "semantic-ui-react";
 import Book from "./BookCard";
 
 export default function BookList() {
@@ -11,7 +12,7 @@ export default function BookList() {
       setBooks(books);
     });
   }, []);
-
+  // grid baloyt based on https://github.com/Semantic-Org/Semantic-UI-React/blob/master/docs/src/layouts/ResponsiveLayout.js
   return (
     <>
       <h3>Livres</h3>
@@ -19,9 +20,15 @@ export default function BookList() {
         <div>loading...</div>
       ) : (
         <div>
-          {books.map(b => (
-            <Book data={b} key={b.id} />
-          ))}
+          <Grid columns={3} doubling stackable>
+            {books.map(b => (
+              <Grid.Column key={b.id}>
+                <Segment>
+                  <Book data={b} />
+                </Segment>
+              </Grid.Column>
+            ))}
+          </Grid>
         </div>
       )}
     </>
