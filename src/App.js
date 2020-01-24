@@ -7,15 +7,27 @@ import CartSummary from "./components/CartSummary";
 export const CartContext = createContext();
 
 function App() {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState({});
 
   function addToCart(item) {
     console.log("item", item);
-    setCart([...cart, item]);
+    if (!cart[item.id]) {
+      cart[item.id] = item;
+      cart[item.id].quantity = 1;
+    } else {
+      cart[item.id].quantity += 1;
+    }
+    setCart({ ...cart });
     console.log("cart", cart);
   }
 
-  const contextValue = { cart, addToCart };
+  function countCartArticles() {
+    let total = 0;
+    Object.keys(cart).map(key => (total += cart[key].quantity));
+    return total;
+  }
+
+  const contextValue = { cart, addToCart, countCartArticles };
 
   return (
     <>

@@ -15,9 +15,7 @@ export default function BookCard({ data }) {
         <Card.Description></Card.Description>
       </Card.Content>
       <Card.Content extra>
-        <button onClick={() => addToCart({ id: data.id, quantity: 1 })}>
-          + ajouter au caddie
-        </button>
+        <button onClick={() => addToCart(data)}>+ ajouter au caddie</button>
       </Card.Content>
     </Card>
   );
