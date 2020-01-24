@@ -1,6 +1,6 @@
 import React, { useState, createContext, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Container, Menu } from "semantic-ui-react";
+import { Container, Menu, Icon } from "semantic-ui-react";
 import "./App.css";
 import BookList from "./components/BookList";
 import CartSummary from "./components/CartSummary";
@@ -82,7 +82,7 @@ function App() {
               </Menu.Item>
               <Menu.Item>
                 <Link to="/cart">
-                  <CartSummary />
+                  <Icon name="cart" size="small" /> <CartSummary />
                 </Link>
               </Menu.Item>
             </Menu>
