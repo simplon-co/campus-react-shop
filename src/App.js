@@ -23,13 +23,23 @@ function App() {
     console.log("cart", cart);
   }
 
+  function removeFromCart(item) {
+    if (cart[item.id].quantity !== 1) {
+      cart[item.id].quantity = cart[item.id].quantity - 1;
+    } else {
+      delete cart[item.id];
+    }
+    setCart({ ...cart });
+    console.log("cart", cart);
+  }
+
   function countCartArticles() {
     let total = 0;
     Object.keys(cart).map(key => (total += cart[key].quantity));
     return total;
   }
 
-  const contextValue = { cart, addToCart, countCartArticles };
+  const contextValue = { cart, addToCart, countCartArticles, removeFromCart };
 
   return (
     <>

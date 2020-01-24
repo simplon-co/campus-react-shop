@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { Header, Table, Rating } from "semantic-ui-react";
+import { Header, Table } from "semantic-ui-react";
 import { CartContext } from "../App";
 
 export default function CartDetails() {
-  const { cart } = useContext(CartContext);
+  const { cart, addToCart, removeFromCart } = useContext(CartContext);
   return (
     <>
       <Table celled padded>
@@ -23,7 +23,9 @@ export default function CartDetails() {
             <Table.Row key={cart[key].id}>
               <Table.Cell>
                 <Header as="h2" textAlign="center">
-                  {cart[key].quantity}
+                  <button onClick={() => removeFromCart(cart[key])}>-</button>{" "}
+                  {cart[key].quantity}{" "}
+                  <button onClick={() => addToCart(cart[key])}>+</button>
                 </Header>
               </Table.Cell>
               <Table.Cell singleLine>{cart[key].title}</Table.Cell>
