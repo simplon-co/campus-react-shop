@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Container, Menu } from "semantic-ui-react";
 import "./App.css";
@@ -7,9 +7,22 @@ import CartSummary from "./components/CartSummary";
 import CartDetails from "./components/CartDetails";
 
 export const CartContext = createContext();
+const CART_KEY = "react-shop";
 
 function App() {
   const [cart, setCart] = useState({});
+
+  useEffect(() => {
+    const cartFromStorage = localStorage.getItem(CART_KEY);
+    if (cartFromStorage !== null) {
+      setCart(JSON.parse(cartFromStorage));
+    }
+  }, []);
+
+  useEffect(() => {
+    // only strings in localStorage
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  }, [cart]);
 
   function addToCart(item) {
     console.log("item", item);
