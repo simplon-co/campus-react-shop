@@ -33,13 +33,28 @@ function App() {
     console.log("cart", cart);
   }
 
+  function emptyCart() {
+    const response = window.confirm(
+      "Etes-vous vous sûr de vouloir vider le caddie ? "
+    );
+    if (response) {
+      setCart({});
+    }
+  }
+
   function countCartArticles() {
     let total = 0;
     Object.keys(cart).map(key => (total += cart[key].quantity));
     return total;
   }
 
-  const contextValue = { cart, addToCart, countCartArticles, removeFromCart };
+  const contextValue = {
+    cart,
+    addToCart,
+    countCartArticles,
+    removeFromCart,
+    emptyCart
+  };
 
   return (
     <>

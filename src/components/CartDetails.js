@@ -3,9 +3,12 @@ import { Header, Table } from "semantic-ui-react";
 import { CartContext } from "../App";
 
 export default function CartDetails() {
-  const { cart, addToCart, removeFromCart } = useContext(CartContext);
+  const { cart, addToCart, removeFromCart, emptyCart } = useContext(
+    CartContext
+  );
   return (
     <>
+      <button onClick={emptyCart}>vider le caddie</button>
       <Table celled padded>
         <Table.Header>
           <Table.Row>
