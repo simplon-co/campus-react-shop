@@ -8,7 +8,16 @@ export default function CartDetails() {
   );
   return (
     <>
-      <button onClick={emptyCart}>vider le caddie</button>
+      <div>
+        {" "}
+        <Icon
+          name="trash alternate"
+          onClick={emptyCart}
+          style={{ cursor: "pointer" }}
+        />
+        <span>vider le caddie</span>
+      </div>
+
       <Table celled padded>
         <Table.Header>
           <Table.Row>
