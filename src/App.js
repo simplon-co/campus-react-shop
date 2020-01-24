@@ -12,6 +12,7 @@ const CART_KEY = "react-shop";
 function App() {
   const [cart, setCart] = useState({});
 
+  //!\ order matters: first useEffect() retrieves from localStorage, second useEffect persists in localStorage
   useEffect(() => {
     const cartFromStorage = localStorage.getItem(CART_KEY);
     if (cartFromStorage !== null) {
@@ -22,6 +23,7 @@ function App() {
   useEffect(() => {
     // only strings in localStorage
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
+    document.title = `caddie(${Object.keys(cart).length})`;
   }, [cart]);
 
   function addToCart(item) {
