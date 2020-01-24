@@ -12,7 +12,7 @@ export default function BookList() {
       setBooks(books);
     });
   }, []);
-  // grid baloyt based on https://github.com/Semantic-Org/Semantic-UI-React/blob/master/docs/src/layouts/ResponsiveLayout.js
+  // grid layout based on https://github.com/Semantic-Org/Semantic-UI-React/blob/master/docs/src/layouts/ResponsiveLayout.js
   return (
     <>
       <h3>Livres</h3>
