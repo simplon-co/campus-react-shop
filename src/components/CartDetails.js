@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Header, Table, Icon } from "semantic-ui-react";
+import { Table, Icon } from "semantic-ui-react";
 import { CartContext } from "../App";
 
 export default function CartDetails() {

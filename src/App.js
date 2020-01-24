@@ -11,6 +11,7 @@ const CART_KEY = "react-shop";
 
 function App() {
   const [cart, setCart] = useState({});
+  const [nbArticles, setNbArticles] = useState(0);
 
   //!\ order matters: first useEffect() retrieves from localStorage, second useEffect persists in localStorage
   useEffect(() => {
@@ -23,8 +24,8 @@ function App() {
   useEffect(() => {
     // only strings in localStorage
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
-    document.title = `caddie(${countCartArticles()})`;
-  }, [cart, countCartArticles]);
+    document.title = `caddie(${nbArticles})`;
+  }, [cart, nbArticles]);
 
   function addToCart(item) {
     console.log("item", item);
@@ -60,6 +61,7 @@ function App() {
   function countCartArticles() {
     let total = 0;
     Object.keys(cart).map(key => (total += cart[key].quantity));
+    setNbArticles(total);
     return total;
   }
 
