@@ -5,6 +5,8 @@ import "./App.css";
 import BookList from "./components/BookList";
 import CartSummary from "./components/CartSummary";
 import CartDetails from "./components/CartDetails";
+import {Provider} from "react-redux";
+import store from "./store";
 
 export const CartContext = createContext();
 const CART_KEY = "react-shop";
@@ -13,7 +15,8 @@ function App() {
   const [cart, setCart] = useState({});
   const [nbArticles, setNbArticles] = useState(0);
 
-  //!\ order matters: first useEffect() retrieves from localStorage, second useEffect persists in localStorage
+  //!\ order matters: first useEffect() retrieves from localStorage,
+  // second useEffect persists in localStorage
   useEffect(() => {
     const cartFromStorage = localStorage.getItem(CART_KEY);
     if (cartFromStorage !== null) {
@@ -76,6 +79,7 @@ function App() {
   return (
     <>
       <Router>
+        <Provider store={store}>
         <CartContext.Provider value={contextValue}>
           <Container>
             <Menu stackable>
@@ -94,6 +98,7 @@ function App() {
             <Route path="/" component={BookList} />
           </Switch>
         </CartContext.Provider>
+        </Provider>
       </Router>
     </>
   );
